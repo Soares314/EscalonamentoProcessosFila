@@ -43,7 +43,7 @@ char* initialize(){
         printf("[INIT] Arquivo aberto com sucesso.\n");
     }
 
-    while(flag == 0){
+    while(flag != -1){
 
         printf("[INIT] Lendo proxima entrada...\n");
         getInput();
@@ -54,6 +54,8 @@ char* initialize(){
     for(int i = 0; i < NUMBER_PRIORITIES; i++){
         printQueue(priorityQueues[i]);
     }
+
+    printQueue(blockedQueue);
 
     printf("[INIT] Escalonador finalizado.\n");
     return "OS powered off";
@@ -73,9 +75,10 @@ void manageProcesses(){
             break;
         }
     }
-    /*if(flag == 1 && i == NUMBER_PRIORITIES){
+
+    if(flag == 1 && i == NUMBER_PRIORITIES){
         flag = -1;
-    } */
+    } 
 
 }
 
@@ -107,7 +110,7 @@ char* getInput(){
         
         if(!isEmpty(blockedQueue)){
             Process* blockedProcess = getElement(blockedQueue);
-            if(linhaLida[0] == blockedProcess->inputProcess[blockedProcess->inputCurrent]){
+            if(linhaLida[0] == blockedProcess->inputProcess[blockedProcess->inputCurrent - 1]){
                 printf("[INPUT] Entrada coincide; desbloqueando processo.\n");
 
                 removeElement(blockedQueue);
@@ -134,7 +137,7 @@ char* getInput(){
         numberInput[count] = valor;
         charInput[count] = '\0'; // sem letra associada
         (count)++;
-        Process* newProcess = initializeProcess(numberInput, charInput, count);
+        Process* newProcess = initializeProcess(linhaLida, numberInput, charInput, count);
         addElement(priorityQueues[newProcess->priority], newProcess);
         printf("[INPUT] Processo adicionado à fila de prioridade %d.\n", newProcess->priority);
         return "Add process without input";
@@ -147,7 +150,7 @@ char* getInput(){
         (count)++;
     }
 
-    Process* newProcess = initializeProcess(numberInput, charInput, count);
+    Process* newProcess = initializeProcess(linhaLida, numberInput, charInput, count);
     addElement(priorityQueues[newProcess->priority], newProcess);
     printf("[INPUT] Processo com entrada adicionado à fila de prioridade %d.\n", newProcess->priority);
     return "Add process with input";

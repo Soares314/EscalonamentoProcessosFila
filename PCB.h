@@ -30,11 +30,12 @@ int generatePID(){
     return rand();
 }
 
-Process* initializeProcess(uint64_t* numberIn, char* charIn, int count)
+Process* initializeProcess(char* n, uint64_t* numberIn, char* charIn, int count)
 {
     Process* new_p = malloc(sizeof(Process));
 
     new_p->PID = generatePID();
+    strcpy(new_p->name, n);
     new_p->state = NEW;
 
     // memset(&new_p->registers, 0, sizeof(process->registers));
