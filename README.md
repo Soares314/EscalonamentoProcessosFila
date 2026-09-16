@@ -1,6 +1,6 @@
 # Simulador de Escalonamento de Processos
 
-Simulador de um **escalonador de processos** desenvolvido em C, utilizando filas de prioridade para representar o gerenciamento de processos de um sistema operacional.
+Simulador de um **escalonador de processos** desenvolvido em C, utilizando filas de prioridade para representar o gerenciamento de processos de um sistema operacional. O projeto tem como objetivo simular, de maneira simplificada, mecanismos envolvidos no gerenciamento de processos de um sistema operacional.
 
 A aplicação lê processos a partir de um arquivo `input.txt`, coloca-os nas filas de prioridade correspondentes e simula sua execução considerando **quantum de processamento**, **bloqueio por entrada**, **desbloqueio** e **mudança de prioridade**.
 
@@ -8,7 +8,7 @@ A aplicação lê processos a partir de um arquivo `input.txt`, coloca-os nas fi
 
 O simulador possui:
 
-* 4 filas de prioridade;
+* n filas de prioridade;
 * fila separada para processos bloqueados;
 * escalonamento baseado em prioridade;
 * execução dos processos utilizando quantum;
@@ -19,7 +19,7 @@ O simulador possui:
 * utilização de filas circulares para gerenciamento dos processos;
 * acompanhamento do estado atual do processo.
 
-As quatro filas de prioridade são inicializadas durante a inicialização do escalonador.
+O número de filas é determinado no header da aplicação, sendo testando com 4.
 
 ---
 
@@ -76,7 +76,7 @@ O fluxo geral é:
           │             │           excedido
           │             │              │
           ▼             ▼              ▼
-       Processo      Fila de       Rebaixar
+       Processo      Fila de       Rebaixar  
        concluído    bloqueados     prioridade
 ```
 
@@ -316,8 +316,6 @@ e:
 escalonador.exe
 ```
 
-> **Observação:** a compilação depende dos arquivos e definições utilizados por `PCB.h`, que não estão incluídos nos arquivos analisados aqui.
-
 ---
 
 ## Saída
@@ -332,37 +330,11 @@ Exemplos:
 [INIT] Fila de bloqueados inicializada.
 ```
 
-Também são exibidas informações sobre:
-
-* leitura de entradas;
-* criação de processos;
-* seleção de processos;
-* execução;
-* interrupção por quantum;
-* mudança de prioridade;
-* bloqueio;
-* desbloqueio;
-* conclusão de processos.
-
-Ao terminar o processamento do arquivo, as filas de prioridade e a fila de bloqueados são impressas.
+Ao terminar o processamento do arquivo, as filas de prioridade e a fila de bloqueados são impressas para indicar se há processos não finalizados.
 
 ---
 
-## Objetivo
-
-O projeto tem como objetivo simular, de maneira simplificada, mecanismos envolvidos no gerenciamento de processos de um sistema operacional, permitindo observar na prática conceitos como:
-
-* processos;
-* estados de processos;
-* filas de processos;
-* prioridades;
-* quantum;
-* preempção;
-* bloqueio;
-* desbloqueio;
-* escalonamento.
-
 ## Autor
 
-Projeto desenvolvido para fins acadêmicos.
+Thiago Soares, desenvolvido para fins acadêmicos dentro da matéria de Sistemas Operacionais 2026/2 do curso de Ciência da Computação na UFT, campus Palmas.
 
