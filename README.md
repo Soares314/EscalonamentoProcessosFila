@@ -35,50 +35,6 @@ As quatro filas de prioridade são inicializadas durante a inicialização do es
 
 ---
 
-### `EscalonamentoProcesso.c`
-
-Contém a implementação principal do simulador.
-
-É responsável por:
-
-* inicializar o escalonador;
-* ler as entradas do arquivo;
-* criar e inserir processos nas filas;
-* selecionar processos para execução;
-* controlar o quantum;
-* bloquear e desbloquear processos;
-* alterar a prioridade dos processos;
-* finalizar a execução do simulador.
-
-O programa mantém quatro filas de processos prontos, uma fila de processos bloqueados e uma referência para o processo atualmente em execução.
-
-### `Fila.h`
-
-Implementa a estrutura de dados utilizada para armazenar os processos.
-
-Cada fila possui capacidade máxima de 100 processos e utiliza uma estrutura circular com os índices `front` e `rear`.
-
-Entre as operações disponíveis estão:
-
-* `initializeQueue()` — cria uma fila;
-* `initializeReadyQueues()` — inicializa as filas de prioridade;
-* `isEmpty()` — verifica se a fila está vazia;
-* `isFull()` — verifica se a fila está cheia;
-* `addElement()` — adiciona um processo;
-* `removeElement()` — remove o primeiro processo;
-* `getElement()` — consulta o processo no início da fila;
-* `printQueue()` — imprime os processos da fila.
-
-A inserção e remoção utilizam a lógica de uma fila circular.
-
-### `PCB.h`
-
-O arquivo `PCB.h` deve fornecer a definição da estrutura `Process` utilizada pelo escalonador.
-
-O `Fila.h` depende dessa estrutura para armazenar ponteiros para processos.
-
----
-
 ## Funcionamento do escalonador
 
 O programa começa inicializando as filas de prioridade e a fila de processos bloqueados. Em seguida, abre o arquivo `input.txt` e começa a processar suas entradas.
